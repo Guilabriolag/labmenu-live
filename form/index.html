@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro Completo – Moraes Grill</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background:#F5E9D0;
+  margin:0;
+  padding:20px;
+}
+
+.container {
+  max-width:800px;
+  margin:auto;
+  background:white;
+  padding:30px;
+  border-radius:14px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align:center;
+  color:#6B1E1E;
+}
+
+.section {
+  margin-top:30px;
+  border-top:1px solid #eee;
+  padding-top:20px;
+}
+
+label {
+  font-weight:bold;
+  display:block;
+  margin-top:12px;
+}
+
+input, textarea, select {
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+textarea { resize:vertical; }
+
+.preview {
+  margin-top:10px;
+  max-height:120px;
+}
+
+button {
+  margin-top:30px;
+  width:100%;
+  padding:15px;
+  background:#6B1E1E;
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+button:hover { opacity:0.9; }
+
+.footer {
+  text-align:center;
+  margin-top:25px;
+  font-size:12px;
+  opacity:0.6;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Cadastro Profissional – Moraes Grill</h1>
+
+<!-- IDENTIDADE -->
+<div class="section">
+<h3>Identidade</h3>
+
+<label>Nome da Marca</label>
+<input id="nome">
+
+<label>Slogan</label>
+<input id="slogan">
+
+<label>História</label>
+<textarea id="historia"></textarea>
+
+<label>Logo (PNG ou JPG)</label>
+<input type="file" id="logo" accept="image/*">
+<img id="logoPreview" class="preview">
+</div>
+
+<!-- UNIDADES -->
+<div class="section">
+<h3>Unidades</h3>
+
+<label>Endereço Pirapora</label>
+<input id="pirapora">
+
+<label>Endereço Alphaville</label>
+<input id="alphaville">
+
+<label>WhatsApp Principal</label>
+<input id="whats">
+</div>
+
+<!-- FUNCIONAMENTO -->
+<div class="section">
+<h3>Funcionamento</h3>
+
+<label>Horário Pirapora</label>
+<input id="horario1">
+
+<label>Horário Alphaville</label>
+<input id="horario2">
+</div>
+
+<!-- DELIVERY -->
+<div class="section">
+<h3>Delivery</h3>
+
+<label>Bairros atendidos</label>
+<textarea id="bairros"></textarea>
+
+<label>Pedido mínimo</label>
+<input id="minimo">
+
+<label>Taxa base</label>
+<input id="taxa">
+
+<label>Formas de pagamento</label>
+<input id="pagamentos">
+
+<label>Chave Pix</label>
+<input id="pix">
+</div>
+
+<!-- PRODUTOS -->
+<div class="section">
+<h3>Produto Exemplo (modelo inicial)</h3>
+
+<label>Nome do Produto</label>
+<input id="produtoNome">
+
+<label>Descrição</label>
+<textarea id="produtoDesc"></textarea>
+
+<label>Preço</label>
+<input id="produtoPreco">
+
+<label>Imagem Produto</label>
+<input type="file" id="produtoImg" accept="image/*">
+<img id="produtoPreview" class="preview">
+</div>
+
+<button onclick="gerarJSON()">Gerar JSON + Enviar WhatsApp</button>
+
+<div class="footer">
+by product Labriolag · ₿ Em breve
+</div>
+
+</div>
+
+<script>
+let logoBase64 = "";
+let produtoBase64 = "";
+
+document.getElementById("logo").addEventListener("change", function(e){
+  const reader = new FileReader();
+  reader.onload = () => {
+    logoBase64 = reader.result;
+    document.getElementById("logoPreview").src = logoBase64;
+  };
+  reader.readAsDataURL(e.target.files[0]);
+});
+
+document.getElementById("produtoImg").addEventListener("change", function(e){
+  const reader = new FileReader();
+  reader.onload = () => {
+    produtoBase64 = reader.result;
+    document.getElementById("produtoPreview").src = produtoBase64;
+  };
+  reader.readAsDataURL(e.target.files[0]);
+});
+
+function gerarJSON(){
+
+const data = {
+  identidade: {
+    nome: nome.value,
+    slogan: slogan.value,
+    historia: historia.value,
+    logo: logoBase64
+  },
+  unidades: {
+    pirapora: pirapora.value,
+    alphaville: alphaville.value,
+    whatsapp: whats.value
+  },
+  funcionamento: {
+    pirapora: horario1.value,
+    alphaville: horario2.value
+  },
+  delivery: {
+    bairros: bairros.value,
+    pedidoMinimo: minimo.value,
+    taxaBase: taxa.value,
+    pagamentos: pagamentos.value,
+    pix: pix.value
+  },
+  produtos: [
+    {
+      nome: produtoNome.value,
+      descricao: produtoDesc.value,
+      preco: produtoPreco.value,
+      imagem: produtoBase64
+    }
+  ]
+};
+
+const jsonString = JSON.stringify(data, null, 2);
+
+// Download automático
+const blob = new Blob([jsonString], { type: "application/json" });
+const url = URL.createObjectURL(blob);
+const a = document.createElement("a");
+a.href = url;
+a.download = "store-data.json";
+a.click();
+
+let resumo = `
+📋 Cadastro Moraes Grill
+
+Nome: ${nome.value}
+Pirapora: ${pirapora.value}
+Alphaville: ${alphaville.value}
+Produto exemplo: ${produtoNome.value} - R$ ${produtoPreco.value}
+
+JSON gerado e baixado.
+`;
+
+window.open("https://wa.me/5511943198316?text=" + encodeURIComponent(resumo), "_blank");
+
+}
+</script>
+
+</body>
+  </html>
