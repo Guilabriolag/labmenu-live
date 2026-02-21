@@ -1,0 +1,151 @@
+{
+  "categories": [
+    {
+      "id": "grelhados",
+      "name": "🔥 Na Brasa",
+      "emoji": "🔥",
+      "products": [
+        {
+          "id": "costela-p",
+          "name": "Costela na Brasa P",
+          "description": "Sem osso, cortada e temperada na brasa. Porção individual.",
+          "price": 49.90,
+          "image": "",
+          "destaque": true,
+          "disponivel": true
+        },
+        {
+          "id": "costela-m",
+          "name": "Costela na Brasa M",
+          "description": "Sem osso, cortada e temperada na brasa. Porção para 2.",
+          "price": 79.90,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        },
+        {
+          "id": "costela-g",
+          "name": "Costela na Brasa G",
+          "description": "Sem osso, cortada e temperada na brasa. Porção família.",
+          "price": 109.90,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        },
+        {
+          "id": "frango-p",
+          "name": "Frango Assado P",
+          "description": "Temperado artesanalmente, assado na brasa. Porção individual.",
+          "price": 29.90,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        },
+        {
+          "id": "frango-m",
+          "name": "Frango Assado M",
+          "description": "Temperado artesanalmente, assado na brasa. Porção para 2.",
+          "price": 39.90,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        }
+      ]
+    },
+    {
+      "id": "acompanhamentos",
+      "name": "🍚 Acompanhamentos",
+      "emoji": "🍚",
+      "products": [
+        {
+          "id": "arroz-350",
+          "name": "Arroz Carreteiro 350ml",
+          "description": "Arroz carreteiro tradicional. Porção individual.",
+          "price": 12.90,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        },
+        {
+          "id": "arroz-500",
+          "name": "Arroz Carreteiro 500ml",
+          "description": "Arroz carreteiro tradicional. Porção média.",
+          "price": 18.90,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        },
+        {
+          "id": "arroz-1000",
+          "name": "Arroz Carreteiro 1000ml",
+          "description": "Arroz carreteiro tradicional. Porção família.",
+          "price": 29.90,
+          "image": "",
+          "destaque": true,
+          "disponivel": true
+        },
+        {
+          "id": "feijao-350",
+          "name": "Feijão Tropeiro 350ml",
+          "description": "Feijão tropeiro na receita da casa. Porção individual.",
+          "price": 12.90,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        },
+        {
+          "id": "feijao-500",
+          "name": "Feijão Tropeiro 500ml",
+          "description": "Feijão tropeiro na receita da casa. Porção média.",
+          "price": 18.90,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        },
+        {
+          "id": "feijao-1000",
+          "name": "Feijão Tropeiro 1000ml",
+          "description": "Feijão tropeiro na receita da casa. Porção família.",
+          "price": 29.90,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "name": "🥤 Bebidas",
+      "emoji": "🥤",
+      "products": [
+        {
+          "id": "refri-lata",
+          "name": "Refrigerante Lata 350ml",
+          "description": "Coca-Cola, Guaraná Antarctica ou Fanta Laranja.",
+          "price": 6.00,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        },
+        {
+          "id": "refri-2l",
+          "name": "Refrigerante 2L",
+          "description": "Coca-Cola, Guaraná Antarctica ou Fanta Laranja.",
+          "price": 12.00,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        },
+        {
+          "id": "agua",
+          "name": "Água Mineral 500ml",
+          "description": "Gelada.",
+          "price": 4.00,
+          "image": "",
+          "destaque": false,
+          "disponivel": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Moraes Grill",
+  "slogan": "Tradição na Brasa · Sabor de Verdade",
+  "whatsapp": "5511999999999",
+  "logo": "",
+  "cores": {
+    "primaria": "#6B1E1E",
+    "secundaria": "#3E6B3E",
+    "destaque": "#F5A623",
+    "fundo": "#F5E9D0",
+    "texto": "#1A1A1A"
+  },
+  "horario": {
+    "abertura": 10,
+    "fechamento": 22,
+    "diasFechados": []
+  },
+  "pedidoMinimo": 25.00,
+  "bairros": {
+    "Alphaville": 5.00,
+    "Barueri": 7.00,
+    "Santana de Parnaíba": 8.00,
+    "Cotia": 10.00,
+    "Osasco": 12.00,
+    "Retirada no Local": 0.00
+  }
+}
