@@ -1,257 +1,170 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cadastro Completo – Moraes Grill</title>
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background:#F5E9D0;
-  margin:0;
-  padding:20px;
-}
-
-.container {
-  max-width:800px;
-  margin:auto;
-  background:white;
-  padding:30px;
-  border-radius:14px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.1);
-}
-
-h1 {
-  text-align:center;
-  color:#6B1E1E;
-}
-
-.section {
-  margin-top:30px;
-  border-top:1px solid #eee;
-  padding-top:20px;
-}
-
-label {
-  font-weight:bold;
-  display:block;
-  margin-top:12px;
-}
-
-input, textarea, select {
-  width:100%;
-  padding:10px;
-  margin-top:5px;
-  border-radius:8px;
-  border:1px solid #ccc;
-}
-
-textarea { resize:vertical; }
-
-.preview {
-  margin-top:10px;
-  max-height:120px;
-}
-
-button {
-  margin-top:30px;
-  width:100%;
-  padding:15px;
-  background:#6B1E1E;
-  color:white;
-  border:none;
-  border-radius:10px;
-  font-size:16px;
-  cursor:pointer;
-}
-
-button:hover { opacity:0.9; }
-
-.footer {
-  text-align:center;
-  margin-top:25px;
-  font-size:12px;
-  opacity:0.6;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Moraes Grill v001</title>
+    <style>
+        :root { --wine: #6B1E1E; --gold: #D4AF37; --bg: #F5E9D0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: var(--wine); border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
+        h3 { color: white; background: var(--wine); padding: 10px; border-radius: 5px; margin-top: 25px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        label { font-weight: bold; display: block; margin-top: 10px; font-size: 13px; }
+        input, textarea, select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box; }
+        
+        /* Itens Dinâmicos */
+        .dynamic-box { border: 1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 10px; background: #fafafa; position: relative; }
+        .remove-btn { position: absolute; top: 10px; right: 10px; background: #d9534f; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+        .add-btn { background: #5cb85c; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        
+        .footer { text-align: center; margin-top: 40px; font-size: 12px; opacity: 0.6; }
+        .main-btn { width: 100%; padding: 20px; background: var(--wine); color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; }
+    </style>
 </head>
 <body>
 
 <div class="container">
-<h1>Cadastro Profissional – Moraes Grill</h1>
+    <h1>Moraes Grill - Onboarding v001</h1>
 
-<!-- IDENTIDADE -->
-<div class="section">
-<h3>Identidade</h3>
+    <div class="section">
+        <h3>1. Identidade da Marca</h3>
+        <div class="grid">
+            <div>
+                <label>Nome da Marca</label>
+                <input type="text" id="brand_name" value="Moraes Grill">
+            </div>
+            <div>
+                <label>Slogan</label>
+                <input type="text" id="brand_slogan">
+            </div>
+        </div>
+        <label>História / Descrição</label>
+        <textarea id="brand_bio" rows="3"></textarea>
+    </div>
 
-<label>Nome da Marca</label>
-<input id="nome">
+    <div class="section">
+        <h3>2. Unidades Operacionais</h3>
+        <div class="grid">
+            <div>
+                <label>📍 Endereço Pirapora</label>
+                <input type="text" id="addr_pira">
+                <label>Horário Pirapora</label>
+                <input type="text" id="time_pira" placeholder="Ex: 11h às 23h">
+            </div>
+            <div>
+                <label>📍 Endereço Alphaville</label>
+                <input type="text" id="addr_alpha">
+                <label>Horário Alphaville</label>
+                <input type="text" id="time_alpha" placeholder="Ex: 11h às 00h">
+            </div>
+        </div>
+    </div>
 
-<label>Slogan</label>
-<input id="slogan">
+    <div class="section">
+        <h3>3. Delivery (Bairros e Taxas)</h3>
+        <div id="list-bairros"></div>
+        <button class="add-btn" onclick="addItem('bairro')">+ Adicionar Bairro</button>
+    </div>
 
-<label>História</label>
-<textarea id="historia"></textarea>
+    <div class="section">
+        <h3>4. Cardápio Completo</h3>
+        <div id="list-produtos"></div>
+        <button class="add-btn" onclick="addItem('produto')">+ Adicionar Produto</button>
+    </div>
 
-<label>Logo (PNG ou JPG)</label>
-<input type="file" id="logo" accept="image/*">
-<img id="logoPreview" class="preview">
-</div>
+    <div class="section">
+        <h3>5. Financeiro</h3>
+        <div class="grid">
+            <div>
+                <label>Chave PIX</label>
+                <input type="text" id="fin_pix">
+            </div>
+            <div>
+                <label>Bitcoin (Lightning)?</label>
+                <select id="fin_btc">
+                    <option value="não">Não</option>
+                    <option value="sim">Sim</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
-<!-- UNIDADES -->
-<div class="section">
-<h3>Unidades</h3>
+    <button class="main-btn" onclick="processar()">GERAR CONFIGURAÇÃO (JSON)</button>
 
-<label>Endereço Pirapora</label>
-<input id="pirapora">
-
-<label>Endereço Alphaville</label>
-<input id="alphaville">
-
-<label>WhatsApp Principal</label>
-<input id="whats">
-</div>
-
-<!-- FUNCIONAMENTO -->
-<div class="section">
-<h3>Funcionamento</h3>
-
-<label>Horário Pirapora</label>
-<input id="horario1">
-
-<label>Horário Alphaville</label>
-<input id="horario2">
-</div>
-
-<!-- DELIVERY -->
-<div class="section">
-<h3>Delivery</h3>
-
-<label>Bairros atendidos</label>
-<textarea id="bairros"></textarea>
-
-<label>Pedido mínimo</label>
-<input id="minimo">
-
-<label>Taxa base</label>
-<input id="taxa">
-
-<label>Formas de pagamento</label>
-<input id="pagamentos">
-
-<label>Chave Pix</label>
-<input id="pix">
-</div>
-
-<!-- PRODUTOS -->
-<div class="section">
-<h3>Produto Exemplo (modelo inicial)</h3>
-
-<label>Nome do Produto</label>
-<input id="produtoNome">
-
-<label>Descrição</label>
-<textarea id="produtoDesc"></textarea>
-
-<label>Preço</label>
-<input id="produtoPreco">
-
-<label>Imagem Produto</label>
-<input type="file" id="produtoImg" accept="image/*">
-<img id="produtoPreview" class="preview">
-</div>
-
-<button onclick="gerarJSON()">Gerar JSON + Enviar WhatsApp</button>
-
-<div class="footer">
-by product Labriolag · ₿ Em breve
-</div>
-
+    <div class="footer">
+        Desenvolvido por Labriolag · v001
+    </div>
 </div>
 
 <script>
-let logoBase64 = "";
-let produtoBase64 = "";
-
-document.getElementById("logo").addEventListener("change", function(e){
-  const reader = new FileReader();
-  reader.onload = () => {
-    logoBase64 = reader.result;
-    document.getElementById("logoPreview").src = logoBase64;
-  };
-  reader.readAsDataURL(e.target.files[0]);
-});
-
-document.getElementById("produtoImg").addEventListener("change", function(e){
-  const reader = new FileReader();
-  reader.onload = () => {
-    produtoBase64 = reader.result;
-    document.getElementById("produtoPreview").src = produtoBase64;
-  };
-  reader.readAsDataURL(e.target.files[0]);
-});
-
-function gerarJSON(){
-
-const data = {
-  identidade: {
-    nome: nome.value,
-    slogan: slogan.value,
-    historia: historia.value,
-    logo: logoBase64
-  },
-  unidades: {
-    pirapora: pirapora.value,
-    alphaville: alphaville.value,
-    whatsapp: whats.value
-  },
-  funcionamento: {
-    pirapora: horario1.value,
-    alphaville: horario2.value
-  },
-  delivery: {
-    bairros: bairros.value,
-    pedidoMinimo: minimo.value,
-    taxaBase: taxa.value,
-    pagamentos: pagamentos.value,
-    pix: pix.value
-  },
-  produtos: [
-    {
-      nome: produtoNome.value,
-      descricao: produtoDesc.value,
-      preco: produtoPreco.value,
-      imagem: produtoBase64
+    // Funções para adicionar campos dinâmicos
+    function addItem(tipo) {
+        const container = tipo === 'bairro' ? document.getElementById('list-bairros') : document.getElementById('list-produtos');
+        const div = document.createElement('div');
+        div.className = 'dynamic-box ' + (tipo === 'bairro' ? 'item-bairro' : 'item-produto');
+        
+        if(tipo === 'bairro') {
+            div.innerHTML = `
+                <button class="remove-btn" onclick="this.parentElement.remove()">X</button>
+                <div class="grid">
+                    <input type="text" placeholder="Nome do Bairro" class="b-nome">
+                    <input type="text" placeholder="Taxa R$" class="b-taxa">
+                </div>`;
+        } else {
+            div.innerHTML = `
+                <button class="remove-btn" onclick="this.parentElement.remove()">X</button>
+                <div class="grid">
+                    <input type="text" placeholder="Nome do Produto" class="p-nome">
+                    <input type="text" placeholder="Preço R$" class="p-preco">
+                </div>
+                <textarea placeholder="Descrição/Ingredientes" class="p-desc" style="margin-top:10px"></textarea>
+                <input type="file" class="p-img" style="margin-top:10px">`;
+        }
+        container.appendChild(div);
     }
-  ]
-};
 
-const jsonString = JSON.stringify(data, null, 2);
+    // Inicializa com um de cada
+    addItem('bairro');
+    addItem('produto');
 
-// Download automático
-const blob = new Blob([jsonString], { type: "application/json" });
-const url = URL.createObjectURL(blob);
-const a = document.createElement("a");
-a.href = url;
-a.download = "store-data.json";
-a.click();
+    function processar() {
+        // Coleta de Bairros
+        const bairros = Array.from(document.querySelectorAll('.item-bairro')).map(el => ({
+            bairro: el.querySelector('.b-nome').value,
+            taxa: el.querySelector('.b-taxa').value
+        }));
 
-let resumo = `
-📋 Cadastro Moraes Grill
+        // Coleta de Produtos
+        const produtos = Array.from(document.querySelectorAll('.item-produto')).map(el => ({
+            nome: el.querySelector('.p-nome').value,
+            preco: el.querySelector('.p-preco').value,
+            descricao: el.querySelector('.p-desc').value
+        }));
 
-Nome: ${nome.value}
-Pirapora: ${pirapora.value}
-Alphaville: ${alphaville.value}
-Produto exemplo: ${produtoNome.value} - R$ ${produtoPreco.value}
+        const data = {
+            config_id: "moraes_grill_v1",
+            unidades: {
+                pirapora: { end: addr_pira.value, hrs: time_pira.value },
+                alphaville: { end: addr_alpha.value, hrs: time_alpha.value }
+            },
+            entrega: bairros,
+            cardapio: produtos,
+            financeiro: { pix: fin_pix.value, btc: fin_btc.value }
+        };
 
-JSON gerado e baixado.
-`;
+        const jsonString = JSON.stringify(data, null, 2);
+        const blob = new Blob([jsonString], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "moraes-grill-config.json";
+        link.click();
 
-window.open("https://wa.me/5511943198316?text=" + encodeURIComponent(resumo), "_blank");
-
-}
+        alert("Arquivo JSON gerado e baixado! Agora o sistema Moraes Grill está pronto para ser alimentado.");
+        window.open("https://wa.me/5511943198316?text=" + encodeURIComponent("Log v001 Finalizado - JSON Pronto."));
+    }
 </script>
 
 </body>
-  </html>
+</html>
