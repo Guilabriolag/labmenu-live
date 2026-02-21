@@ -40,7 +40,7 @@ Senha demo: `moraes2026`
 
 **Para produção**, abra `painel.html` e troque:
 ```js
-const SENHA_DEMO = 'moraes2026';
+const SENHA_DEMO = '';
 ```
 pela senha real do Glauber.
 
